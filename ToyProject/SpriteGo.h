@@ -5,6 +5,7 @@ class SpriteGo : public GameObject
 protected:
 	sf::Sprite sprite;
 	std::string textureId;
+	float velocity = 100.f;
 public:
 	SpriteGo(const std::string& texId, const std::string& name);
 	~SpriteGo() = default;
@@ -16,6 +17,7 @@ public:
 
 	void Reset() override;
 	void SetPosition(const sf::Vector2f& pos) override;
+	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
 
 };

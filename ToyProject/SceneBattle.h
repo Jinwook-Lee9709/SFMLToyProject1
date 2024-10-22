@@ -1,12 +1,13 @@
-#pragma once
 #include "Scene.h"
-class SceneDev1 : public Scene
+
+#pragma once
+class SceneBattle : public Scene
 {
 protected:
-	
+
 public:
-	SceneDev1();
-	~SceneDev1() = default;
+	SceneBattle();
+	~SceneBattle();
 
 	virtual void Init() override;
 	virtual void Enter() override;
@@ -15,6 +16,5 @@ public:
 
 	virtual void Update(float dt) override;
 	virtual void Draw(sf::RenderWindow& window) override;
-
 };
 

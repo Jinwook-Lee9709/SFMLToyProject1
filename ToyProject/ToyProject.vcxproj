@@ -23,7 +23,9 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneBattle.cpp" />
     <ClCompile Include="SceneDev1.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SpriteGo.cpp" />
@@ -38,8 +40,10 @@
     <ClInclude Include="Framework.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneBattle.h" />
     <ClInclude Include="SceneDev1.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />

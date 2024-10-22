@@ -37,6 +37,11 @@ void SpriteGo::SetPosition(const sf::Vector2f& pos)
 	sprite.setPosition(pos);
 }
 
+void SpriteGo::Update(float dt)
+{
+	
+}
+
 void SpriteGo::Draw(sf::RenderWindow& window)
 {
 	GameObject::Draw(window);

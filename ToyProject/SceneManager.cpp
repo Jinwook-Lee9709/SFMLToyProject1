@@ -1,10 +1,11 @@
 #include "stdafx.h"
 #include "SceneManager.h"
 #include "SceneDev1.h"
+#include "SceneBattle.h"
 
 void SceneManager::Init()
 {
-	scenes.push_back(new SceneDev1());
+	scenes.push_back(new SceneBattle());
 	for (auto scene : scenes)
 	{
 		scene->Init();
