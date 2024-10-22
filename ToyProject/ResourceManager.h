@@ -29,7 +29,7 @@ public:
 	bool Load(const std::string& id)
 	{
 		if (resources.find(id) != resources.end())
-			return false;
+			return true;
 		T* resource = new T();
 		bool success = resource->loadFromFile(id);
 		if (success) {

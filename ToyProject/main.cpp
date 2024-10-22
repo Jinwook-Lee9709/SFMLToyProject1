@@ -2,7 +2,7 @@
 
 int main()
 {
-    FRAMEWORK.Init(1920, 1080, "SFML!");
+    FRAMEWORK.Init(1600, 900, "SFML!");
     FRAMEWORK.Do();
     FRAMEWORK.Release();
     return 0;

@@ -2,7 +2,7 @@
 #include "Player.h"
 
 Player::Player(const std::string& texId)
-	:GameObject("Player"), textureId(texId), hp(50), atk(0), def(0), shield(0)
+	:GameObject("Player"), textureId(texId), hp(50), atk(0), def(0), shield(0), ap(3), hand(5)
 {
 
 }
@@ -42,6 +42,16 @@ void Player::Update(float dt)
 void Player::Draw(sf::RenderWindow& window)
 {
 	window.draw(sprite);
+}
+
+int Player::GetAp()
+{
+	return ap;
+}
+
+void Player::SetAp(int ap)
+{
+	this->ap = ap;
 }
 
 void Player::Hit(int dmg)

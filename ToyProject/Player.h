@@ -6,7 +6,7 @@ class Player :
 private:
     sf::Sprite sprite;
 	std::string textureId;
-    int hp, atk, def, shield;
+    int hp, atk, def, shield, ap, hand;
 	float velocity = 0.f;
 public:
 	Player(const std::string& texId);
@@ -20,6 +20,8 @@ public:
 	void Update(float dt);
 	void Draw(sf::RenderWindow& window) override;
 
+	int GetAp();
+	void SetAp(int ap);
 	void Hit(int dmg);
 	void Heal(int hp);
 	void BufAtk(int atk);
