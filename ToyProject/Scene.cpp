@@ -7,7 +7,7 @@ Scene::Scene(SceneIds id)
 
 }
 //씬이 생성될 때
-void Scene::Init()
+void Scene::Init(sf::RenderWindow& window)
 {
 	for (auto obj : gameObjects)
 	{

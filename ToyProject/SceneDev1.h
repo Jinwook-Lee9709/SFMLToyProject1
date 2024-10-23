@@ -8,7 +8,7 @@ public:
 	SceneDev1();
 	~SceneDev1() = default;
 
-	virtual void Init() override;
+	virtual void Init(sf::RenderWindow& window) override;
 	virtual void Enter() override;
 	virtual void Exit() override;
 

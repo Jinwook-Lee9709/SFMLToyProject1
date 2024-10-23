@@ -17,6 +17,11 @@ void GameObject::SetOrigin(Origins preset)
 	origin = { 0.f, 0.f };
 }
 
+void GameObject::SetScale(sf::Vector2f size)
+{
+
+}
+
 void GameObject::Init()
 {
 }

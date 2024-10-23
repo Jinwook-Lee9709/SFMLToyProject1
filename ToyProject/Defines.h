@@ -15,3 +15,25 @@ enum class Origins
 	BL, BC, BR,
 	Custom
 };
+
+enum class Monsters
+{
+	Wolf,
+	Tree,
+	Golem,
+};
+
+enum class Cards
+{
+	Bash,
+	Defend,
+	Inflame,
+	Strike
+};
+
+enum class Turn
+{
+	CardSelect,
+	MonsterSelect,
+	MonsterTurn,
+};

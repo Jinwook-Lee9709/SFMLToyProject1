@@ -1,33 +1,42 @@
 #include "stdafx.h"
-#include "Player.h"
+#include "Enemy.h"
 
-Player::Player(const std::string& texId)
-	:GameObject("Player"), textureId(texId), maxHp(50), hp(50), atk(0), def(0), shield(0), ap(3), hand(5)
+Enemy::Enemy(const std::string& texId)
+	:GameObject(texId), textureId(texId), maxHp(50), hp(50), atk(0), def(0), shield(0)
 {
-
+	if (texId == "graphics/Wolf.png");
+	mType = Monsters::Wolf;
+	name = "Wolf";
+	if (texId == "graphics/Tree.png");
+	mType = Monsters::Tree;
+	name = "Tree";
+	if (texId == "graphics/Golem.png");{}
+	mType = Monsters::Golem;
+	name = "Golem";
 }
 
-void Player::SetOrigin(Origins preset)
+void Enemy::SetOrigin(Origins preset)
 {
 	originPreset = preset;
 	origin = Utils::SetOrigin(sprite, originPreset);
 }
 
-void Player::SetOrigin(const sf::Vector2f& newOrigin)
+void Enemy::SetOrigin(const sf::Vector2f& newOrigin)
 {
 	originPreset = Origins::Custom;
 	origin = newOrigin;
 	sprite.setOrigin(origin);
 }
 
-void Player::Reset()
+void Enemy::Reset()
 {
+	SetStat(mType);
 	sprite.setTexture(RES_MGR(sf::Texture).Get(textureId));
 	SetOrigin(originPreset);
 
 	hpBar.setSize(sf::Vector2f(200.f, 20.f));
 	hpBar.setFillColor(sf::Color(114, 47, 55, 200));
-	hpBar.setPosition(sprite.getPosition().x - 50, sprite.getPosition().y);
+	hpBar.setPosition(sprite.getPosition().x - hpBar.getLocalBounds().width * 0.5f, sprite.getPosition().y);
 
 	hpText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
 	hpText.setCharacterSize(12);	
@@ -41,41 +50,52 @@ void Player::Reset()
 
 }
 
-void Player::SetPosition(const sf::Vector2f& pos)
+void Enemy::SetPosition(const sf::Vector2f& pos)
 {
 	sprite.setPosition(pos);
-	sprite.getTextureRect().contains(10,20);
 }
 
-void Player::Update(float dt)
+void Enemy::Update(float dt)
 {
 	hpBar.setScale((float)hp / (float)maxHp, 1.0f);
 	hpText.setString(std::to_string(hp) + "/" + std::to_string(maxHp));
 }
 
-void Player::Draw(sf::RenderWindow& window)
+void Enemy::Draw(sf::RenderWindow& window)
 {
 	window.draw(sprite);
 	window.draw(hpBar);
 	window.draw(hpText);
 }
 
-int Player::GetAp()
+void Enemy::SetStat(Monsters mType)
 {
-	return ap;
+	switch (mType) {
+	case Monsters::Wolf:
+	{
+		maxHp = 40;
+		hp = maxHp;
+		atk = 6;
+		def = 0;
+	}
+	case Monsters::Tree:
+	{
+		maxHp = 60;
+		hp = maxHp;
+		atk = 5;
+		def = 0;
+	}
+	case Monsters::Golem:
+	{
+		maxHp = 100;
+		hp = maxHp;
+		atk = 8;
+		def = 0;
+	}
+	}
 }
 
-int Player::GetAtk()
-{
-	return atk;
-}
-
-void Player::SetAp(int ap)
-{
-	this->ap = ap;
-}
-
-void Player::Hit(int dmg)
+void Enemy::Hit(int dmg)
 {
 	this->shield -= dmg;
 	if (shield < 0) {
@@ -88,7 +108,7 @@ void Player::Hit(int dmg)
 	
 }
 
-void Player::Heal(int hp)
+void Enemy::Heal(int hp)
 {
 	if (this->hp + hp <= maxHp) {
 		this->hp += hp;
@@ -100,22 +120,22 @@ void Player::Heal(int hp)
 
 }
 
-void Player::BufAtk(int atk)
+void Enemy::BufAtk(int atk)
 {
 	this->atk += atk;
 }
 
-void Player::BufDef(int def)
+void Enemy::BufDef(int def)
 {
 	this->def += def;
 }
 
-void Player::GetShield(int shield)
+void Enemy::GetShield(int shield)
 {
 	this->shield += shield;
 }
 
-bool Player::CheckPos(sf::Vector2f pos)
+bool Enemy::CheckPos(sf::Vector2f pos)
 {
 	return sprite.getGlobalBounds().contains(pos);
 }

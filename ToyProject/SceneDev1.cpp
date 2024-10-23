@@ -9,7 +9,7 @@ SceneDev1::SceneDev1()
 
 }
 
-void SceneDev1::Init()
+void SceneDev1::Init(sf::RenderWindow& window)
 {
 	std::cout << "SceneDev1:: Init()" << std::endl;
 
@@ -20,7 +20,7 @@ void SceneDev1::Init()
 	obj2->SetOrigin(Origins::TC);
 	obj2->SetPosition({ 1920 / 2, 20 });
 	obj2->SetText("SceneDev1");
-	Scene::Init();
+	Scene::Init(window);
 }
 
 void SceneDev1::Enter()

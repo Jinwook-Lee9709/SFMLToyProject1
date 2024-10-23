@@ -9,7 +9,7 @@ public:
 	Scene(SceneIds id);
 	virtual ~Scene() = default;
 
-	virtual void Init();
+	virtual void Init(sf::RenderWindow& window);
 	virtual void Release();
 
 	virtual void Enter();

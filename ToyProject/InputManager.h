@@ -24,4 +24,3 @@ public:
 	static sf::Vector2f GetMousePos();
 	static sf::Vector2f GetMousePosWindow(sf::RenderWindow* window);
 };
-

@@ -1,9 +1,12 @@
 #pragma once
 #include <list>
 #include <unordered_map>
+#include <deque>
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <string>
+#include <random>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -16,5 +19,5 @@
 #include "ResourceManager.h"
 #include "SceneManager.h"
 #include "GameObject.h"
-
+#include "DeckController.h"
 

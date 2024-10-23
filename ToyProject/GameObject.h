@@ -30,7 +30,7 @@ public:
 		origin = newOrigin;
 		originPreset = Origins::Custom;
 	}
-
+	virtual void SetScale(sf::Vector2f size);
 	virtual void Init();
 	virtual void Release();
 

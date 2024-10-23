@@ -36,6 +36,18 @@
     <ClCompile Include="SceneBattle.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Card.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="DeckController.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework.h" />
@@ -80,6 +92,18 @@
     </ClInclude>
     <ClInclude Include="SceneBattle.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="DeckController.h">
+      <Filter>Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

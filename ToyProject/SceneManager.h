@@ -8,7 +8,9 @@ class SceneManager :public Singleton<SceneManager>
 protected:
 	std::vector<Scene*> scenes;
 
-	SceneIds startScene = SceneIds::Dev1;
+	sf::RenderWindow* window;
+
+	SceneIds startScene = SceneIds::Battle;
 	SceneIds currentScene;
 
 	SceneManager() = default;
@@ -17,7 +19,7 @@ protected:
 	SceneManager(const SceneManager&) = delete;
 	SceneManager& operator=(const SceneManager&) = delete;
 public:
-	void Init();
+	void Init(sf::RenderWindow& window);
 	void Release();
 
 	SceneIds GetCurrentScene() const { return currentScene;  }

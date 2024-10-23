@@ -3,17 +3,19 @@
 #include "SceneDev1.h"
 #include "SceneBattle.h"
 
-void SceneManager::Init()
+void SceneManager::Init(sf::RenderWindow& window)
 {
+	scenes.push_back(new SceneDev1());
 	scenes.push_back(new SceneBattle());
 	for (auto scene : scenes)
 	{
-		scene->Init();
+		scene->Init(window);
 	}
 	currentScene = startScene;
 	scenes[(int)currentScene]->Enter();
 
 }
+
 
 void SceneManager::Release()
 {
