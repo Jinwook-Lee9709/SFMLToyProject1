@@ -2,7 +2,7 @@
 #include "Player.h"
 
 Player::Player(const std::string& texId)
-	:GameObject("Player"), textureId(texId), maxHp(50), hp(50), atk(0), def(0), shield(0), ap(3), hand(5)
+	:GameObject("Player"), textureId(texId), maxHp(50), maxCost(3), hp(50), atk(0), def(0), shield(0), cost(3), hand(5)
 {
 
 }
@@ -37,6 +37,13 @@ void Player::Reset()
 	hpText.setString(std::to_string(hp) + "/" + std::to_string(maxHp));
 	hpText.setFillColor(sf::Color::White);
 
+	costText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
+	costText.setCharacterSize(20);
+	costText.setOrigin(hpText.getLocalBounds().width * 0.5f,
+					costText.getLocalBounds().height * 0.5f);
+	costText.setPosition(hpBar.getPosition() - sf::Vector2f(126.f, 13.f));
+	costText.setString(std::to_string(cost) + "/" + std::to_string(maxCost));
+	costText.setFillColor(sf::Color::Black);
 	
 
 }
@@ -51,6 +58,7 @@ void Player::Update(float dt)
 {
 	hpBar.setScale((float)hp / (float)maxHp, 1.0f);
 	hpText.setString(std::to_string(hp) + "/" + std::to_string(maxHp));
+	costText.setString(std::to_string(cost) + "/" + std::to_string(maxCost));
 }
 
 void Player::Draw(sf::RenderWindow& window)
@@ -58,11 +66,12 @@ void Player::Draw(sf::RenderWindow& window)
 	window.draw(sprite);
 	window.draw(hpBar);
 	window.draw(hpText);
+	window.draw(costText);
 }
 
-int Player::GetAp()
+int Player::GetCost()
 {
-	return ap;
+	return cost;
 }
 
 int Player::GetAtk()
@@ -70,9 +79,26 @@ int Player::GetAtk()
 	return atk;
 }
 
-void Player::SetAp(int ap)
+void Player::UseCost(Cards card)
 {
-	this->ap = ap;
+	switch (card) {
+		case Cards::Bash: {
+			cost -= 2;
+			break;
+		}
+		case Cards::Defend: {
+			cost -= 1;
+			break;
+		}
+		case Cards::Inflame: {
+			cost -= 1;
+			break;
+		}
+		case Cards::Strike: {
+			cost -= 1;
+			break;
+		}
+	}
 }
 
 void Player::Hit(int dmg)

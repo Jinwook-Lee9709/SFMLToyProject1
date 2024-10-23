@@ -7,8 +7,9 @@ private:
     sf::Sprite sprite;
 	sf::RectangleShape hpBar;
 	sf::Text hpText;
+	sf::Text costText;
 	std::string textureId;
-    int maxHp, hp, atk, def, shield, ap, hand;
+    int maxHp, maxCost, hp, atk, def, shield, cost, hand;
 public:
 	Player(const std::string& texId);
 	~Player() = default;
@@ -21,9 +22,9 @@ public:
 	void Update(float dt);
 	void Draw(sf::RenderWindow& window) override;
 
-	int GetAp();
+	int GetCost();
 	int GetAtk();
-	void SetAp(int ap);
+	void UseCost(Cards card);
 	void Hit(int dmg);
 	void Heal(int hp);
 	void BufAtk(int atk);
