@@ -52,24 +52,24 @@ void Enemy::Reset()
 
 	hpText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
 	hpText.setCharacterSize(12);	
-	hpText.setOrigin(hpText.getLocalBounds().width * 0.5f,
-					hpText.getLocalBounds().height * 0.5f);
+	//hpText.setOrigin(hpText.getLocalBounds().width * 0.5f,
+	//				hpText.getLocalBounds().height * 0.5f);
 	hpText.setPosition(hpBar.getPosition() + sf::Vector2f(80.f, 2.f));
 	hpText.setString(std::to_string(hp) + "/" + std::to_string(maxHp));
 	hpText.setFillColor(sf::Color::White);
 
 	shieldText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
 	shieldText.setCharacterSize(15);
-	shieldText.setOrigin(shieldText.getLocalBounds().width * 0.5f,
-	shieldText.getLocalBounds().height * 0.5f);
+	//shieldText.setOrigin(shieldText.getLocalBounds().width * 0.5f,
+	//shieldText.getLocalBounds().height * 0.5f);
 	shieldText.setPosition(spriteShield.getPosition() - sf::Vector2f(30.f, 10.f));
 	shieldText.setString(std::to_string(shield));
 	shieldText.setFillColor(sf::Color::Black);
 
 	debufText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
 	debufText.setCharacterSize(15);
-	debufText.setOrigin(debufText.getLocalBounds().width * 0.5f,
-		debufText.getLocalBounds().height * 0.5f);
+	/*debufText.setOrigin(debufText.getLocalBounds().width * 0.5f,
+		debufText.getLocalBounds().height * 0.5f);*/
 	debufText.setPosition(spriteDebuf.getPosition() - sf::Vector2f(30.f, 10.f));
 	debufText.setString(std::to_string(vulnerable));
 	debufText.setFillColor(sf::Color::Black);
@@ -120,6 +120,7 @@ void Enemy::Draw(sf::RenderWindow& window)
 
 void Enemy::SetStat(Monsters mType)
 {
+	vulnerable = 0;
 	switch (mType) {
 	case Monsters::Wolf:
 	{

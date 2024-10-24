@@ -15,17 +15,15 @@ void SceneDev2::Init(sf::RenderWindow& window)
 
 	std::cout << "SceneDev2:: Init()" << std::endl;
 
-	RES_MGR(sf::Texture).Load("graphics/cool.png");
-	spritecool.setTexture(RES_MGR(sf::Texture).Get("graphics/cool.png"));
-	RES_MGR(sf::Font).Load("fonts/KOMIKAP_.ttf");
-	RES_MGR(sf::Texture).Load("graphics/playbutton.png");
-	spriteplaybutton.setTexture(RES_MGR(sf::Texture).Get("graphics/playbutton.png"));
-	RES_MGR(sf::Texture).Load("graphics/out.png");
-	spriteout.setTexture(RES_MGR(sf::Texture).Get("graphics/out.png"));
+
 }
 
 void SceneDev2::Enter()
 {
+	RES_MGR(sf::Font).Load("fonts/KOMIKAP_.ttf");
+	RES_MGR(sf::Texture).Load("graphics/playbutton.png");
+	RES_MGR(sf::Texture).Load("graphics/cool.png");
+	RES_MGR(sf::Texture).Load("graphics/out.png");
 	messageText.setFont(RES_MGR(sf::Font).Get("fonts/KOMIKAP_.ttf"));
 	messageText.setCharacterSize(150);
 	messageText.setString("Slay the Spire");
@@ -34,6 +32,12 @@ void SceneDev2::Enter()
 	spriteplaybutton.setPosition(100, 450);
 	spriteout.setScale(1.0f,0.8f);
 	spriteout.setPosition(1000, 500);
+
+	spritecool.setTexture(RES_MGR(sf::Texture).Get("graphics/cool.png"));
+
+	spriteplaybutton.setTexture(RES_MGR(sf::Texture).Get("graphics/playbutton.png"));
+
+	spriteout.setTexture(RES_MGR(sf::Texture).Get("graphics/out.png"));
 }
 
 void SceneDev2::Exit()

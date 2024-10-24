@@ -55,6 +55,8 @@ void Card::InitCard()
 	cardText.setString(Utils::makeCardText(type, 0));
 	cardText.setOrigin(cardText.getLocalBounds().width * 0.5f,
 		cardText.getLocalBounds().height * 0.5f);
+	
+	
 	cardText.setPosition(sprite.getPosition() - sf::Vector2f(0.f, sprite.getLocalBounds().height * 0.08f));
 	cardText.setFillColor(sf::Color::White);
 }

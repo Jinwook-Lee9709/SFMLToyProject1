@@ -64,13 +64,36 @@ void SceneBattle::Init(sf::RenderWindow& window)
 	auto* gameover = AddGo(new TextGo("fonts/Sansation.ttf"));
 	gameover->SetName("GAMEOVER");
 	gameover->SetText("GameOver Press button to Restart");
-	gameover->SetPosition({ window.getSize().x * 0.5f, window.getSize().y * 0.4f });
+	gameover->SetOrigin(Origins::MC);
+	gameover->SetPosition({ window.getSize().x * 0.5f, window.getSize().y * 0.3f });
 	gameover->SetSize(50);
+	gameover->SetActive(false);
+
+	auto* victory = AddGo(new TextGo("fonts/Sansation.ttf"));
+	victory->SetName("VICTORY");
+	victory->SetText("VICTORY! Press button to Restart");
+	victory->SetOrigin(Origins::MC);
+	victory->SetPosition({ window.getSize().x * 0.5f, window.getSize().y * 0.3f });
+	victory->SetSize(50);
+	victory->SetActive(false);
+
+	auto* restart = AddGo(new SpriteGo("graphics/Restart.png", "RestartButton"));
+	restart->SetOrigin(Origins::MC);
+	restart->SetPosition({ window.getSize().x * 0.5f, window.getSize().y * 0.5f });
+	restart->SetScale(sf::Vector2f(0.5f, 0.5f));
+	restart->SetActive(false);
+
+	auto* exit = AddGo(new SpriteGo("graphics/out.png", "ExitButton"));
+	exit->SetOrigin(Origins::MC);
+	exit->SetPosition({ window.getSize().x * 0.5f, window.getSize().y * 0.7f });
+	exit->SetScale(sf::Vector2f(0.5f, 0.5f));
+	exit->SetActive(false);
 	Scene::Init(window);
 }
 
 void SceneBattle::Enter()
 {
+	DECK_CTRL.reset();
 	RES_MGR(sf::Texture).Load("graphics/Background.png");
 	RES_MGR(sf::Texture).Load("graphics/Cost.png");
 	RES_MGR(sf::Texture).Load("graphics/Ironclad.png");
@@ -87,8 +110,14 @@ void SceneBattle::Enter()
 	RES_MGR(sf::Texture).Load("graphics/Debuf.png");
 	RES_MGR(sf::Texture).Load("graphics/Slash.png");
 	RES_MGR(sf::Texture).Load("graphics/Aura.png");
+	RES_MGR(sf::Texture).Load("graphics/Restart.png");
+	RES_MGR(sf::Texture).Load("graphics/out.png");
 	RES_MGR(sf::Font).Load("fonts/Sansation.ttf");
-	
+	for (int i = 0; i < 5; i++) {
+		auto tempCard = (Card*)FindGo("Card" + std::to_string(i));
+		tempCard->Reset();
+		tempCard->SetActive(true);
+	}
 	Animation::Instance().Init();
 	
 	Scene::Enter();
@@ -112,6 +141,8 @@ void SceneBattle::Exit()
 	RES_MGR(sf::Texture).UnLoad("graphics/Debuf.png");
 	RES_MGR(sf::Texture).UnLoad("graphics/Slash.png");
 	RES_MGR(sf::Texture).UnLoad("graphics/Aura.png");
+	RES_MGR(sf::Texture).UnLoad("graphics/Restart.png");
+	RES_MGR(sf::Texture).UnLoad("graphics/out.png");
 	RES_MGR(sf::Font).UnLoad("fonts/Sansation.ttf");
 }
 
@@ -292,19 +323,88 @@ void SceneBattle::Update(float dt)
 			break;
 		}
 		case Turn::Victory: {
-		
+			if (InputManager::GetBtnPressed(sf::Mouse::Left)) {
+				auto it1 = (SpriteGo*)FindGo("RestartButton");
+				auto it2 = (SpriteGo*)FindGo("ExitButton");
+				auto it3 = (TextGo*)FindGo("VICTORY");
+				if (it1->CheckPos(InputManager::GetMousePosWindow(window)))
+				{
+					it1->SetActive(false);
+					it2->SetActive(false);
+					it3->SetActive(false);
+					Enter();
+					turn = Turn::CardSelect;
+				}
+				else if (it2->CheckPos(InputManager::GetMousePosWindow(window)))
+				{
+					it1->SetActive(false);
+					it2->SetActive(false);
+					it3->SetActive(false);
+					Enter();
+					turn = Turn::CardSelect;
+					SCENE_MGR.ChangeScene(SceneIds::Dev2);
+				}
+			}
 			break;
 		}
 		case Turn::Gameover: {
-
+			if (InputManager::GetBtnPressed(sf::Mouse::Left)) {
+				auto it1 = (SpriteGo*)FindGo("RestartButton");
+				auto it2 = (SpriteGo*)FindGo("ExitButton");
+				auto it3 = (TextGo*)FindGo("GAMEOVER");
+				if (it1->CheckPos(InputManager::GetMousePosWindow(window)))
+				{
+					it1->SetActive(false);
+					it2->SetActive(false);
+					it3->SetActive(false);
+					Enter();
+					turn = Turn::CardSelect;
+				}
+				else if (it2->CheckPos(InputManager::GetMousePosWindow(window)))
+				{
+					it1->SetActive(false);
+					it2->SetActive(false);
+					it3->SetActive(false);
+					Enter();
+					turn = Turn::CardSelect;
+					SCENE_MGR.ChangeScene(SceneIds::Dev2);
+				}
+				
+			}
 			break;
+
 		}
 	}
 	if (player->GetHp() == 0) {
+		auto it = (TextGo*)FindGo("GAMEOVER");
+		it->SetActive(true);
+		auto it2 = (SpriteGo*)FindGo("RestartButton");
+		it2->SetActive(true);
+		auto it3 = (SpriteGo*)FindGo("ExitButton");
+		it3->SetActive(true);
+		player->Heal(50);
 		turn = Turn::Gameover;
 	}
 	else if (enemy->GetHp() == 0) {
+		auto it1 = (TextGo*)FindGo("VICTORY");
+		it1->SetActive(true);
+		auto it2 = (SpriteGo*)FindGo("RestartButton");
+		it2->SetActive(true);
+		auto it3 = (SpriteGo*)FindGo("ExitButton");
+		it3->SetActive(true);
+		enemy->Heal(100);
 		turn = Turn::Victory;
+	}
+	if (InputManager::GetKeyPressed(sf::Keyboard::Escape)) {
+		auto it = (TextGo*)FindGo("GAMEOVER");
+		it->SetActive(false);
+		auto it2 = (SpriteGo*)FindGo("RestartButton");
+		it2->SetActive(false);
+		auto it3 = (SpriteGo*)FindGo("ExitButton");
+		it3->SetActive(false);
+		Enter();
+		turn = Turn::CardSelect;
+		SCENE_MGR.ChangeScene(SceneIds::Dev2);
 	}
 	Scene::Update(dt);
 }

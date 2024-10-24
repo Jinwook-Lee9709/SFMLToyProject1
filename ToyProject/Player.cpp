@@ -24,7 +24,10 @@ void Player::Reset()
 {
 	sprite.setTexture(RES_MGR(sf::Texture).Get(textureId));
 	SetOrigin(originPreset);
-
+	cost = 3;
+	hp = 50;
+	atk = 0;
+	shield = 0;
 	hpBar.setSize(sf::Vector2f(200.f, 20.f));
 	hpBar.setFillColor(sf::Color(114, 47, 55, 200));
 	hpBar.setPosition(sprite.getPosition().x - 50, sprite.getPosition().y);
@@ -42,25 +45,25 @@ void Player::Reset()
 
 	hpText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
 	hpText.setCharacterSize(12);	
-	hpText.setOrigin(hpText.getLocalBounds().width * 0.5f,
-					hpText.getLocalBounds().height * 0.5f);
+	//hpText.setOrigin(hpText.getLocalBounds().width * 0.5f,
+	//				hpText.getLocalBounds().height * 0.5f);
 	hpText.setPosition(hpBar.getPosition() + sf::Vector2f(80.f, 2.f));
 	hpText.setString(std::to_string(hp) + "/" + std::to_string(maxHp));
 	hpText.setFillColor(sf::Color::White);
 
 	shieldText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
 	shieldText.setCharacterSize(15);
-	shieldText.setOrigin(shieldText.getLocalBounds().width * 0.5f,
-						shieldText.getLocalBounds().height * 0.5f);
+	/*shieldText.setOrigin(shieldText.getLocalBounds().width * 0.5f,
+						shieldText.getLocalBounds().height * 0.5f);*/
 	shieldText.setPosition(spriteShield.getPosition() - sf::Vector2f(30.f, 10.f));
 	shieldText.setString(std::to_string(shield));
 	shieldText.setFillColor(sf::Color::Black);
 
 	costText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
 	costText.setCharacterSize(20);
-	costText.setOrigin(hpText.getLocalBounds().width * 0.5f,
-					costText.getLocalBounds().height * 0.5f);
-	costText.setPosition(hpBar.getPosition() - sf::Vector2f(126.f, 13.f));
+	/*costText.setOrigin(hpText.getLocalBounds().width * 0.5f,
+					costText.getLocalBounds().height * 0.5f);*/
+	costText.setPosition(hpBar.getPosition() - sf::Vector2f(142.f, 13.f));
 	costText.setString(std::to_string(cost) + "/" + std::to_string(maxCost));
 	costText.setFillColor(sf::Color::Black);
 	

@@ -15,6 +15,8 @@ void SpriteGo::SetOrigin(Origins preset)
 {
 	originPreset = preset;
 	origin = Utils::SetOrigin(sprite, originPreset);
+	sprite.setOrigin(origin);
+
 }
 
 void SpriteGo::SetOrigin(const sf::Vector2f& newOrigin)
@@ -55,7 +57,9 @@ void SpriteGo::Update(float dt)
 void SpriteGo::Draw(sf::RenderWindow& window)
 {
 	GameObject::Draw(window);
-	window.draw(sprite);
+	if (active == true) {
+		window.draw(sprite);
+	}
 }
 
 bool SpriteGo::CheckPos(sf::Vector2f pos)

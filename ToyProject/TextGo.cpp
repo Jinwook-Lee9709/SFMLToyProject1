@@ -22,6 +22,7 @@ void TextGo::SetOrigin(Origins preset)
 {
 	originPreset = preset;
 	origin = Utils::SetOrigin(text, originPreset);
+	text.setOrigin(origin);
 }
 
 void TextGo::SetOrigin(const sf::Vector2f& newOrigin)
@@ -47,8 +48,10 @@ void TextGo::Draw(sf::RenderWindow& window)
 {
 
 	GameObject::Draw(window);
+	if(active == true){
+		window.draw(text);
+	}
 	
-	window.draw(text);
 }
 
 void TextGo::SetSize(int size)
