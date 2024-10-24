@@ -48,6 +48,9 @@
     <ClCompile Include="DeckController.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="CardPile.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework.h" />
@@ -104,6 +107,9 @@
     </ClInclude>
     <ClInclude Include="DeckController.h">
       <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CardPile.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

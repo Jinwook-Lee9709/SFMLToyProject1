@@ -30,6 +30,7 @@ public:
 
 	void SetTimeScale(float newTimeScale) { timeScale = newTimeScale; }
 	float GetTimeScale() { return timeScale; }
+	sf::RenderWindow& GetWindow() { return window; }
 
 
 	virtual void Init(int width, int height, const std::string& name);

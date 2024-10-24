@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="CardPile.cpp" />
     <ClCompile Include="DeckController.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Framework.cpp" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Card.h" />
+    <ClInclude Include="CardPile.h" />
     <ClInclude Include="DeckController.h" />
     <ClInclude Include="Defines.h" />
     <ClInclude Include="Enemy.h" />

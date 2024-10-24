@@ -13,10 +13,13 @@ private:
 	DeckController(const DeckController&) = delete;
 	DeckController& operator=(const DeckController&) = delete;
 
+	int graveSize;
 public:
 	void Init();
 	void reset();
+	void useCard(int amout);
 	int getDeckSize();
+	int getGraveSize();
 	Cards drawCard();
 	std::deque<Cards> drawCards();
 };

@@ -1,15 +1,29 @@
 #pragma once
-class Animation
+class Animation : public Singleton<Animation>
 {
+	friend class Singleton<Animation>;
 private:
+	sf::Sprite spriteAttack;
+	sf::Sprite spriteMAttack;
+	sf::Sprite spriteBuf;
+	sf::IntRect rectSourceSpriteAttack;
+	sf::IntRect rectSourceSpriteBuf;
+	int cnt;
+	bool atk, atkF,mAtk, mAtkF, buf, bufF;
 	float elapsedTime;
-
 public:
-	bool attackLeft(sf::Sprite obj);
-	bool attackRight(sf::Sprite obj);
+	Animation();
+	void Init();
+	void Update(float dt);
+	void Draw(sf::RenderWindow& window);
 
-	bool buf(sf::Sprite obj);
+	void Attack(float dt);
+	void mAttack(float dt);
+	void Buf(float dt);
 
+	void triggerAttack();
+	void triggerMAttack();
+	void triggerBuf();
 
 };
 

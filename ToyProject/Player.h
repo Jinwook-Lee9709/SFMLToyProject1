@@ -6,10 +6,12 @@ class Player :
 private:
     sf::Sprite sprite;
 	sf::Sprite spriteShield;
+	sf::Sprite spriteBuf;
 	sf::RectangleShape hpBar;
 	sf::Text hpText;
 	sf::Text shieldText;
 	sf::Text costText;
+	sf::Text bufText;
 	std::string textureId;
     int maxHp, maxCost, hp, atk, def, shield, cost, hand;
 public:
@@ -26,7 +28,9 @@ public:
 
 	int GetCost();
 	int GetAtk();
+	int GetHp() { return hp; }
 	void UseCost(Cards card);
+	void RestoreCost();
 	void Hit(int dmg);
 	void Heal(int hp);
 	void BufAtk(int atk);

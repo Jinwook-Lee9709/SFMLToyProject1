@@ -2,7 +2,7 @@
 #include "Card.h"
 
 Card::Card(const std::string& texId)
-	:GameObject("Player"), textureId(texId), select(false)
+	:GameObject("Card"), textureId(texId), select(false)
 {
 
 }
@@ -22,7 +22,6 @@ void Card::SetOrigin(const sf::Vector2f& newOrigin)
 
 void Card::Reset()
 {
-	DECK_CTRL.Init();
 	Cards hand = DECK_CTRL.drawCard();
 	type = hand;
 	switch(type){

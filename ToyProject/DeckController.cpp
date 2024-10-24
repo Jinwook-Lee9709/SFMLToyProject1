@@ -23,6 +23,12 @@ void DeckController::reset()
 	deck.clear();
 	deck = std::deque<Cards>(deckTemplate.begin(), deckTemplate.end());
 	std::random_shuffle(deck.begin(), deck.end());
+	graveSize = 0;
+}
+
+void DeckController::useCard(int amout)
+{
+	graveSize += amout;
 }
 
 int DeckController::getDeckSize()
@@ -30,12 +36,21 @@ int DeckController::getDeckSize()
 	return deck.size();
 }
 
+int DeckController::getGraveSize()
+{
+	return graveSize;
+}
+
 Cards DeckController::drawCard()
 {
+	if (deck.empty()) {
+		reset();
+	}
 	Cards drawCard = deck.front();
 	deck.pop_front();
 	return drawCard;
 }
+
 
 std::deque<Cards> DeckController::drawCards()
 {
@@ -47,3 +62,4 @@ std::deque<Cards> DeckController::drawCards()
 	}
 	return hand;
 }
+

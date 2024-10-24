@@ -34,6 +34,11 @@ void Player::Reset()
 	spriteShield.setPosition(hpBar.getPosition());
 	spriteShield.setOrigin(spriteShield.getLocalBounds().width,
 						spriteShield.getLocalBounds().height * 0.5);
+	spriteBuf.setTexture(RES_MGR(sf::Texture).Get("graphics/Buf.png"));
+	spriteBuf.setScale(0.1f, 0.1f);
+	spriteBuf.setPosition(hpBar.getPosition() + sf::Vector2f(40.f, -30.f));
+	spriteBuf.setOrigin(spriteBuf.getLocalBounds().width,
+		spriteBuf.getLocalBounds().height * 0.5);
 
 	hpText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
 	hpText.setCharacterSize(12);	
@@ -59,6 +64,12 @@ void Player::Reset()
 	costText.setString(std::to_string(cost) + "/" + std::to_string(maxCost));
 	costText.setFillColor(sf::Color::Black);
 	
+	bufText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
+	bufText.setCharacterSize(20);
+	bufText.setOrigin(0.f, 0.f);
+	bufText.setPosition(spriteBuf.getPosition() - sf::Vector2f(10.f, -5.f));
+	bufText.setString(std::to_string(atk));
+	bufText.setFillColor(sf::Color::Black);
 
 }
 
@@ -73,6 +84,7 @@ void Player::Update(float dt)
 	hpBar.setScale((float)hp / (float)maxHp, 1.0f);
 	hpText.setString(std::to_string(hp) + "/" + std::to_string(maxHp));
 	costText.setString(std::to_string(cost) + "/" + std::to_string(maxCost));
+	bufText.setString(std::to_string(atk));
 	shieldText.setString(std::to_string(shield));
 	if (shield == 0) {
 		spriteShield.setColor(sf::Color::Transparent);
@@ -84,6 +96,14 @@ void Player::Update(float dt)
 		shieldText.setFillColor(sf::Color::Black);
 		hpBar.setFillColor(sf::Color(80, 80, 80, 200));
 	}
+	if (atk == 0) {
+		spriteBuf.setColor(sf::Color::Transparent);
+		bufText.setFillColor(sf::Color::Transparent);
+	}
+	else {
+		spriteBuf.setColor(sf::Color::White);
+		bufText.setFillColor(sf::Color::White);
+	}
 }
 
 void Player::Draw(sf::RenderWindow& window)
@@ -94,6 +114,8 @@ void Player::Draw(sf::RenderWindow& window)
 	window.draw(costText);
 	window.draw(spriteShield);
 	window.draw(shieldText);
+	window.draw(spriteBuf);
+	window.draw(bufText);
 }
 
 int Player::GetCost()
@@ -126,6 +148,11 @@ void Player::UseCost(Cards card)
 			break;
 		}
 	}
+}
+
+void Player::RestoreCost()
+{
+	cost = maxCost;
 }
 
 void Player::Hit(int dmg)
