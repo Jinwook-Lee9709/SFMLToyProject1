@@ -63,6 +63,7 @@ void Card::InitCard()
 void Card::SetPosition(const sf::Vector2f& pos)
 {
 	sprite.setPosition(pos);
+	cardText.setPosition(pos - sf::Vector2f(0.f, sprite.getLocalBounds().height * 0.08f));
 }
 
 void Card::SetScale(sf::Vector2f size)
@@ -118,6 +119,11 @@ Cards Card::getType()
 bool Card::CheckPos(sf::Vector2f pos)
 {
 	return sprite.getGlobalBounds().contains(pos);
+}
+
+sf::Vector2f Card::GetPosition()
+{
+	return sprite.getPosition();
 }
 
 void Card::SetCardType(Cards type)

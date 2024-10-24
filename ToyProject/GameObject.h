@@ -20,7 +20,7 @@ public:
 	bool IsActive() const { return active; }
 	void SetActive(bool a) { active = a; }
 
-	sf::Vector2f GetPosition() const { return position; }
+	virtual sf::Vector2f GetPosition();
 	virtual void SetPosition(const sf::Vector2f& pos) { position = pos; }
 
 	sf::Vector2f GetOrigin() const { return origin; }

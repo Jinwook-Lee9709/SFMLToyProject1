@@ -19,6 +19,7 @@ public:
 	void Reset() override;
 	void InitCard();
 	void SetPosition(const sf::Vector2f& pos) override;
+	
 	void SetScale(sf::Vector2f size);
 	void SetName(std::string name);
 	void Update(float dt);
@@ -30,6 +31,7 @@ public:
 	void UpdateCard(int atk);
 	Cards getType();
 	bool CheckPos(sf::Vector2f pos);
+	sf::Vector2f GetPosition();
 
 	void SetCardType(Cards type);
 };

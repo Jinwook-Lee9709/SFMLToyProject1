@@ -11,6 +11,11 @@ GameObject::~GameObject()
 {
 }
 
+sf::Vector2f GameObject::GetPosition()
+{
+	return position;
+}
+
 void GameObject::SetOrigin(Origins preset)
 {
 	originPreset = preset;

@@ -37,5 +37,6 @@ enum class Turn
 	MonsterSelect,
 	DiscardCard,
 	MonsterTurn,
+	RestoreCard,
 	DrawCard,
 };

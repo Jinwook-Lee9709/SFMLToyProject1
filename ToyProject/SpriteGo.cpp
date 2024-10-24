@@ -37,6 +37,16 @@ void SpriteGo::SetPosition(const sf::Vector2f& pos)
 	sprite.setPosition(pos);
 }
 
+void SpriteGo::SetScale(const sf::Vector2f& pos)
+{
+	GameObject::SetScale(pos);
+	sprite.setScale(pos);
+}
+
+
+
+
+
 void SpriteGo::Update(float dt)
 {
 	
@@ -46,4 +56,9 @@ void SpriteGo::Draw(sf::RenderWindow& window)
 {
 	GameObject::Draw(window);
 	window.draw(sprite);
+}
+
+bool SpriteGo::CheckPos(sf::Vector2f pos)
+{
+	return sprite.getGlobalBounds().contains(pos);
 }
