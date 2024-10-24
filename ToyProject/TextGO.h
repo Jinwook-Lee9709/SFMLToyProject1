@@ -20,7 +20,7 @@ public:
 	void Reset() override;
 	void SetPosition(const sf::Vector2f& pos)override;
 	void Draw(sf::RenderWindow& window)override;
-
+	void SetSize(int size);
 
 };
 

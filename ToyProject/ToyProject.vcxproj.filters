@@ -48,13 +48,11 @@
     <ClCompile Include="DeckController.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="SceneDev2.cpp">
       <Filter>Scene</Filter>
-=======
+	</ClCompile>
     <ClCompile Include="CardPile.cpp">
       <Filter>Object</Filter>
->>>>>>> origin/develop
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,13 +111,11 @@
     <ClInclude Include="DeckController.h">
       <Filter>Component</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="SceneDev2.h">
       <Filter>Scene</Filter>
-=======
+	</ClInclude>
     <ClInclude Include="CardPile.h">
       <Filter>Object</Filter>
->>>>>>> origin/develop
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

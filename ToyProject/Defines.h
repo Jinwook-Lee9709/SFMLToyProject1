@@ -40,4 +40,6 @@ enum class Turn
 	MonsterTurn,
 	RestoreCard,
 	DrawCard,
+	Victory,
+	Gameover
 };

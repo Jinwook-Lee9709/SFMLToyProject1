@@ -28,7 +28,7 @@ void SceneBattle::Init(sf::RenderWindow& window)
 	cost->SetPosition({ window.getSize().x * 0.14f, window.getSize().y * 0.6f });
 
 	auto* obj1 = AddGo(new Player("graphics/Ironclad.png"));
-;	obj1->SetOrigin(Origins::BC);
+	obj1->SetOrigin(Origins::BC);
 	obj1->SetPosition({ window.getSize().x * 0.25f, window.getSize().y * 0.6f});
 	auto* obj2 = AddGo(new Enemy("graphics/Golem.png"));
 	obj2->SetOrigin(Origins::BC);
@@ -60,6 +60,12 @@ void SceneBattle::Init(sf::RenderWindow& window)
 	end->SetOrigin(Origins::MC);
 	end->SetPosition({ window.getSize().x * 0.9f, window.getSize().y * 0.75f });
 	end->SetScale(sf::Vector2f(0.3f, 0.3f));
+
+	auto* gameover = AddGo(new TextGo("fonts/Sansation.ttf"));
+	gameover->SetName("GAMEOVER");
+	gameover->SetText("GameOver Press button to Restart");
+	gameover->SetPosition({ window.getSize().x * 0.5f, window.getSize().y * 0.4f });
+	gameover->SetSize(50);
 	Scene::Init(window);
 }
 
@@ -285,12 +291,20 @@ void SceneBattle::Update(float dt)
 			}
 			break;
 		}
+		case Turn::Victory: {
+		
+			break;
+		}
+		case Turn::Gameover: {
+
+			break;
+		}
 	}
 	if (player->GetHp() == 0) {
-
+		turn = Turn::Gameover;
 	}
 	else if (enemy->GetHp() == 0) {
-
+		turn = Turn::Victory;
 	}
 	Scene::Update(dt);
 }

@@ -45,15 +45,11 @@ void SceneDev2::Exit()
 
 void SceneDev2::Update(float dt)
 {
-	Scene::Update(dt);
+
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		sf::Vector2i pixelPos = sf::Mouse::getPosition(*window);
 		sf::Vector2f worldPos = window->mapPixelToCoords(pixelPos);
-
-		std::cout << "Mouse Position: " << worldPos.x << ", " << worldPos.y << std::endl;
-		std::cout << "Play Button Bounds: " << spriteplaybutton.getGlobalBounds().left << ", "
-			<< spriteplaybutton.getGlobalBounds().top << std::endl;
 		
 		if (spriteplaybutton.getGlobalBounds().contains(worldPos))
 		{
@@ -66,15 +62,13 @@ void SceneDev2::Update(float dt)
 			window->close();
 		}
 	}
-	
+	Scene::Update(dt);
 }
 
 void SceneDev2::Draw(sf::RenderWindow& window)
 {	
-	window.clear();
 	window.draw(spritecool);
 	window.draw(messageText);
 	window.draw(spriteout);
 	window.draw(spriteplaybutton);
-	window.display();
 }

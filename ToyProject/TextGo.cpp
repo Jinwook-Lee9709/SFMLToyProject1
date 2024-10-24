@@ -15,7 +15,6 @@ TextGo::TextGo(const std::string& font)
 
 void TextGo::SetText(const std::string& str)
 {
-	GameObject::name = str;
 	text.setString(str);
 }
 
@@ -35,7 +34,6 @@ void TextGo::SetOrigin(const sf::Vector2f& newOrigin)
 void TextGo::Reset()
 {
 	text.setFont(RES_MGR(sf::Font).Get(font));
-	text.setString(GameObject::name);
 	SetOrigin(originPreset);
 }
 
@@ -47,6 +45,13 @@ void TextGo::SetPosition(const sf::Vector2f& pos)
 
 void TextGo::Draw(sf::RenderWindow& window)
 {
+
 	GameObject::Draw(window);
+	
 	window.draw(text);
+}
+
+void TextGo::SetSize(int size)
+{
+	text.setCharacterSize(size);
 }
