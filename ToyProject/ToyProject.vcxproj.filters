@@ -48,6 +48,9 @@
     <ClCompile Include="DeckController.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="SceneDev2.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework.h" />
@@ -104,6 +107,9 @@
     </ClInclude>
     <ClInclude Include="DeckController.h">
       <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDev2.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -30,7 +30,10 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneBattle.cpp" />
-    <ClCompile Include="SceneDev1.cpp" />
+    <ClCompile Include="SceneDev1.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SceneDev2.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SpriteGo.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -52,7 +55,10 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneBattle.h" />
-    <ClInclude Include="SceneDev1.h" />
+    <ClInclude Include="SceneDev1.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="SceneDev2.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SpriteGo.h" />

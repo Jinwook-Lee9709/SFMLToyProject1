@@ -10,7 +10,7 @@ protected:
 
 	sf::RenderWindow* window;
 
-	SceneIds startScene = SceneIds::Battle;
+	SceneIds startScene = SceneIds::Dev2;
 	SceneIds currentScene;
 
 	SceneManager() = default;
