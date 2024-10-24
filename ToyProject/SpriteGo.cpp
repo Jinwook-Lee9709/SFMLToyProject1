@@ -37,10 +37,10 @@ void SpriteGo::SetPosition(const sf::Vector2f& pos)
 	sprite.setPosition(pos);
 }
 
-void SpriteGo::SetScale(const sf::Vector2f& pos)
+void SpriteGo::SetScale(const sf::Vector2f& size)
 {
-	GameObject::SetScale(pos);
-	sprite.setScale(pos);
+	GameObject::SetScale(size);
+	sprite.setScale(size);
 }
 
 

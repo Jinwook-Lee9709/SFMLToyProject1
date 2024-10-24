@@ -14,7 +14,7 @@ public:
 
 	virtual void SetOrigin(Origins preset);
 	virtual void SetOrigin(const sf::Vector2f& newOrigin);
-	virtual void SetScale(const sf::Vector2f& newOrigin);
+	virtual void SetScale(const sf::Vector2f& size);
 
 	void Reset() override;
 	void SetPosition(const sf::Vector2f& pos) override;

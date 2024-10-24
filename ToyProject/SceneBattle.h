@@ -25,6 +25,7 @@ public:
 	virtual void Draw(sf::RenderWindow& window) override;
 
 	void PlayerAction(Player& player, Enemy& enemy, Card& card);
+	Card* checkCardClick(std::deque<Card*> list, sf::Vector2f pos);
 
 };
 
