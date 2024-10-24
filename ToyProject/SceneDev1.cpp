@@ -8,48 +8,48 @@ SceneDev1::SceneDev1()
 {
 
 }
-// 시작할때 오브젝트 초기화하기
+
 void SceneDev1::Init(sf::RenderWindow& window)
 {
+	std::cout << "SceneDev1:: Init()" << std::endl;
 
-	RES_MGR(sf::Texture).Load("graphics/Deck.png");
-	RES_MGR(sf::Texture).Load("graphics/Grave.png");
-	RES_MGR(sf::Texture).Load("graphics/cancel.png");
-	RES_MGR(sf::Texture).Load("graphics/playback.png");
-
-	
-	spritecancel.setTexture(RES_MGR(sf::Texture).Get("graphics/cancel.png"));
-	spriteDeck.setTexture(RES_MGR(sf::Texture).Get("graphics/Deck.png"));
-	spriteGrave.setTexture(RES_MGR(sf::Texture).Get("graphics/Grave.png"));
-	spriteplayback.setTexture(RES_MGR(sf::Texture).Get("graphics/playback.png"));
+	auto* obj = AddGo(new SpriteGo("graphics/background.png"));
+	obj->SetOrigin(Origins::MC);
+	obj->SetPosition({ 1920 /2 , 1080 / 2 });
+	auto* obj2 = AddGo(new TextGo("fonts/Sansation.ttf"));
+	obj2->SetOrigin(Origins::TC);
+	obj2->SetPosition({ 1920 / 2, 20 });
+	obj2->SetText("SceneDev1");
 	Scene::Init(window);
 }
-//리소스 로딩
+
 void SceneDev1::Enter()
 {
 	std::cout << "SceneDev1:: Enter()" << std::endl;
 
-	/*RES_MGR(sf::Texture).Load("graphics/background.png");*/
-	
+	RES_MGR(sf::Texture).Load("graphics/background.png");
+	RES_MGR(sf::Font).Load("fonts/Sansation.ttf");
+
 	Scene::Enter();
 }
-//리소스 해재하기
+
 void SceneDev1::Exit()
 {
 	std::cout << "SceneDev1:: Exit()" << std::endl;
 
 	Scene::Exit();
 
-	//RES_MGR(sf::Texture).UnLoad("graphics/background.png");
-	RES_MGR(sf::Texture).UnLoad("graphics/Deck.png");
-	RES_MGR(sf::Texture).UnLoad("graphics/Grave.png");
-	RES_MGR(sf::Texture).UnLoad("graphics/cancel.png");
-	RES_MGR(sf::Texture).UnLoad("graphics/playback.png");
+	RES_MGR(sf::Texture).UnLoad("graphics/background.png");
 }
-//오브젝트 업데이트하기
+
 void SceneDev1::Update(float dt)
 {
-
-	/*SCENE_MGR.ChangeScene(SceneIds::Battle);*/
 	Scene::Update(dt);
 }
+
+void SceneDev1::Draw(sf::RenderWindow& window)
+{
+	Scene::Draw(window);
+}
+
+

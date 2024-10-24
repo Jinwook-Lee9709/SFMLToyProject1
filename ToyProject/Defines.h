@@ -5,7 +5,6 @@ enum class SceneIds
 	None = -1,
 	Dev1,
 	Battle,
-	Dev2,
 	Count,
 };
 

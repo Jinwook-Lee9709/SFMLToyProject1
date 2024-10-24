@@ -2,13 +2,11 @@
 #include "SceneManager.h"
 #include "SceneDev1.h"
 #include "SceneBattle.h"
-#include "SceneDev2.h"
 
 void SceneManager::Init(sf::RenderWindow& window)
 {
 	scenes.push_back(new SceneDev1());
 	scenes.push_back(new SceneBattle());
-	scenes.push_back(new SceneDev2());
 	for (auto scene : scenes)
 	{
 		scene->Init(window);
