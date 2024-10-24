@@ -3,7 +3,17 @@
 class SceneDev1 : public Scene
 {
 protected:
+	sf::Texture texcancel;
+	sf::Texture texDeck;
+	sf::Texture texGrave;
+	sf::Texture texplayback;
 	
+
+	sf::Sprite spritecancel;
+	sf::Sprite spriteDeck;
+	sf::Sprite spriteGrave;
+	sf::Sprite spriteplayback;
+
 public:
 	SceneDev1();
 	~SceneDev1() = default;
@@ -14,7 +24,22 @@ public:
 
 
 	virtual void Update(float dt) override;
-	virtual void Draw(sf::RenderWindow& window) override;
+	//오브젝트 그리기
+	virtual void Draw(sf::RenderWindow& window) override
+	{
+		window.clear();
+
+		
+		Scene::Draw(window);
+		window.draw(spritecancel);
+		window.draw(spriteDeck);
+		window.draw(spriteGrave);
+		window.draw(spriteplayback);
+		
+
+
+		window.display();
+	}
 
 };
 
