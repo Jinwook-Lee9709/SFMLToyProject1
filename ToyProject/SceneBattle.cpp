@@ -22,6 +22,10 @@ void SceneBattle::Init(sf::RenderWindow& window)
 	background->SetOrigin(Origins::MC);
 	background->SetPosition({ window.getSize().x * 0.5f, window.getSize().y * 0.5f -100.f});
 	auto* cost = AddGo(new SpriteGo("graphics/Cost.png"));
+	background->SetOrigin(Origins::MC);
+	background->SetPosition({ window.getSize().x * 0.5f, window.getSize().y * 0.5f - 100.f });
+	auto* cost = AddGo(new SpriteGo("graphics/Cost.png"));
+
 	cost->SetOrigin(Origins::MC);
 	cost->SetPosition({ window.getSize().x * 0.14f, window.getSize().y * 0.6f });
 	auto* obj1 = AddGo(new Player("graphics/Ironclad.png"));
@@ -55,6 +59,7 @@ void SceneBattle::Enter()
 	RES_MGR(sf::Texture).Load("graphics/Defend.png");
 	RES_MGR(sf::Texture).Load("graphics/Inflame.png");
 	RES_MGR(sf::Texture).Load("graphics/Strike.png");
+	RES_MGR(sf::Texture).Load("graphics/Shield.png");
 	RES_MGR(sf::Font).Load("fonts/Sansation.ttf");
 	
 	
@@ -71,6 +76,7 @@ void SceneBattle::Exit()
 	RES_MGR(sf::Texture).UnLoad("graphics/Defend.png");
 	RES_MGR(sf::Texture).UnLoad("graphics/Inflame.png");
 	RES_MGR(sf::Texture).UnLoad("graphics/Strike.png");
+	RES_MGR(sf::Texture).UnLoad("graphics/Shield.png");
 	RES_MGR(sf::Font).UnLoad("fonts/Sansation.ttf");
 }
 
@@ -94,7 +100,8 @@ void SceneBattle::Update(float dt)
 		if (player->GetCost() > 0 && InputManager::GetBtnPressed(sf::Mouse::Left)) {
 			for (int i = 0; i < 5; i++) {
 				auto it = card_list.front();
-				if (it->CheckPos(InputManager::GetMousePosWindow(window))) {
+				if (it->CheckPos(InputManager::GetMousePosWindow(window))&&it->IsActive()) {
+					
 					it->selected();
 					selectedCard = i;
 					turn = Turn::MonsterSelect;
@@ -113,6 +120,7 @@ void SceneBattle::Update(float dt)
 					PlayerAction(*player, *enemy, *card);
 					card->unSelected();
 					player->UseCost(card->getType());
+					card->SetActive(false);
 					turn = Turn::CardSelect;
 				}
 			}
@@ -121,6 +129,7 @@ void SceneBattle::Update(float dt)
 					PlayerAction(*player, *enemy, *card);
 					card->unSelected();
 					player->UseCost(card->getType());
+					card->SetActive(false);
 					turn = Turn::CardSelect;
 				}
 			}
@@ -133,8 +142,24 @@ void SceneBattle::Update(float dt)
 		}
 		break;
 	}
+	case Turn::DiscardCard:{
+		for (int i = 0; i < 5; i++) {
+			elapsedTime += dt;
+			if (elapsedTime < 2) {
+				for (auto it : card_list) {
+					sf::Vector2f temp = it->GetPosition();
+					temp += sf::Vector2f(0.f, cardVelocity * dt);
+				}
+			}
+			else {
+				turn = Turn::MonsterTurn;
+			}
+
+		}
+	}
 	case Turn::MonsterTurn: {
 		
+		turn = Turn::CardSelect;
 		break;
 	}
 	}
@@ -168,6 +193,7 @@ void SceneBattle::PlayerAction(Player& player, Enemy& enemy, Card& card)
 		}
 	}
 }
+
 
 
 

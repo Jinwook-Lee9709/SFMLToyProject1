@@ -10,6 +10,8 @@ protected:
 	Turn turn;
 	int selectedCard;
 	sf::RenderWindow* window;
+	float cardVelocity = 100.f;
+	float elapsedTime = 0;
 public:
 	SceneBattle();
 	~SceneBattle();

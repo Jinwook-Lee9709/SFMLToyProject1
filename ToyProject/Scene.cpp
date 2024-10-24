@@ -35,6 +35,11 @@ void Scene::Enter()
 
 void Scene::Exit()
 {
+	for (auto obj : gameObjects)
+	{
+		delete obj;
+	}
+	gameObjects.clear();
 }
 
 void Scene::Update(float dt)

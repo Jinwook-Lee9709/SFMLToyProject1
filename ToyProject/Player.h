@@ -5,8 +5,10 @@ class Player :
 {
 private:
     sf::Sprite sprite;
+	sf::Sprite spriteShield;
 	sf::RectangleShape hpBar;
 	sf::Text hpText;
+	sf::Text shieldText;
 	sf::Text costText;
 	std::string textureId;
     int maxHp, maxCost, hp, atk, def, shield, cost, hand;

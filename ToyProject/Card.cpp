@@ -88,9 +88,12 @@ void Card::Update(float dt)
 
 void Card::Draw(sf::RenderWindow& window)
 {
-	window.draw(sprite);
-	window.draw(cardText);
+	if (active) {
+		window.draw(sprite);
+		window.draw(cardText);
+	}
 }
+
 
 void Card::selected()
 {

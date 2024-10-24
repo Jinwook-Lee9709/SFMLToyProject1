@@ -29,6 +29,12 @@ void Player::Reset()
 	hpBar.setFillColor(sf::Color(114, 47, 55, 200));
 	hpBar.setPosition(sprite.getPosition().x - 50, sprite.getPosition().y);
 
+	spriteShield.setTexture(RES_MGR(sf::Texture).Get("graphics/Shield.png"));
+	spriteShield.setScale(0.1f, 0.1f);
+	spriteShield.setPosition(hpBar.getPosition());
+	spriteShield.setOrigin(spriteShield.getLocalBounds().width,
+						spriteShield.getLocalBounds().height * 0.5);
+
 	hpText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
 	hpText.setCharacterSize(12);	
 	hpText.setOrigin(hpText.getLocalBounds().width * 0.5f,
@@ -36,6 +42,14 @@ void Player::Reset()
 	hpText.setPosition(hpBar.getPosition() + sf::Vector2f(80.f, 2.f));
 	hpText.setString(std::to_string(hp) + "/" + std::to_string(maxHp));
 	hpText.setFillColor(sf::Color::White);
+
+	shieldText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
+	shieldText.setCharacterSize(15);
+	shieldText.setOrigin(shieldText.getLocalBounds().width * 0.5f,
+						shieldText.getLocalBounds().height * 0.5f);
+	shieldText.setPosition(spriteShield.getPosition() - sf::Vector2f(30.f, 10.f));
+	shieldText.setString(std::to_string(shield));
+	shieldText.setFillColor(sf::Color::Black);
 
 	costText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
 	costText.setCharacterSize(20);
@@ -59,6 +73,17 @@ void Player::Update(float dt)
 	hpBar.setScale((float)hp / (float)maxHp, 1.0f);
 	hpText.setString(std::to_string(hp) + "/" + std::to_string(maxHp));
 	costText.setString(std::to_string(cost) + "/" + std::to_string(maxCost));
+	shieldText.setString(std::to_string(shield));
+	if (shield == 0) {
+		spriteShield.setColor(sf::Color::Transparent);
+		shieldText.setFillColor(sf::Color::Transparent);
+		hpBar.setFillColor(sf::Color(114, 47, 55, 200));
+	}
+	else {
+		spriteShield.setColor(sf::Color::White);
+		shieldText.setFillColor(sf::Color::Black);
+		hpBar.setFillColor(sf::Color(80, 80, 80, 200));
+	}
 }
 
 void Player::Draw(sf::RenderWindow& window)
@@ -67,6 +92,8 @@ void Player::Draw(sf::RenderWindow& window)
 	window.draw(hpBar);
 	window.draw(hpText);
 	window.draw(costText);
+	window.draw(spriteShield);
+	window.draw(shieldText);
 }
 
 int Player::GetCost()

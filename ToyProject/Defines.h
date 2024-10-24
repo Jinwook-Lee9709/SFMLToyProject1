@@ -35,5 +35,7 @@ enum class Turn
 {
 	CardSelect,
 	MonsterSelect,
+	DiscardCard,
 	MonsterTurn,
+	DrawCard,
 };
