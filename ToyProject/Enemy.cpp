@@ -62,8 +62,9 @@ void Enemy::Reset()
 	shieldText.setCharacterSize(15);
 	//shieldText.setOrigin(shieldText.getLocalBounds().width * 0.5f,
 	//shieldText.getLocalBounds().height * 0.5f);
-	shieldText.setPosition(spriteShield.getPosition() - sf::Vector2f(30.f, 10.f));
+	shieldText.setPosition(spriteShield.getPosition() - sf::Vector2f(25.f, 10.f));
 	shieldText.setString(std::to_string(shield));
+	shieldText.setOrigin(shieldText.getLocalBounds().width * 0.5f, 0.f);
 	shieldText.setFillColor(sf::Color::Black);
 
 	debufText.setFont(RES_MGR(sf::Font).Get("fonts/Sansation.ttf"));
@@ -86,6 +87,7 @@ void Enemy::Update(float dt)
 	hpText.setString(std::to_string(hp) + "/" + std::to_string(maxHp));
 	shieldText.setString(std::to_string(shield));
 	debufText.setString(std::to_string(vulnerable));
+	shieldText.setOrigin(shieldText.getLocalBounds().width * 0.5f, 0.f);
 	if (shield == 0) {
 		spriteShield.setColor(sf::Color::Transparent);
 		shieldText.setFillColor(sf::Color::Transparent);
