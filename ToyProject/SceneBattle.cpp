@@ -115,7 +115,6 @@ void SceneBattle::Enter()
 	RES_MGR(sf::Font).Load("fonts/Sansation.ttf");
 	for (int i = 0; i < 5; i++) {
 		auto tempCard = (Card*)FindGo("Card" + std::to_string(i));
-		tempCard->Reset();
 		tempCard->SetActive(true);
 	}
 	Animation::Instance().Init();
